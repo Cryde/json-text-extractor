@@ -3,7 +3,11 @@
 
 Small library that will help extract JSON from plain text
 
+## Installation 
 
+```
+composer require cryde/json-txt-extractor
+```
 
 ## Usage
 
