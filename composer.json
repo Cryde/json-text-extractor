@@ -1,5 +1,5 @@
 {
-    "name": "cryde/json-txt-extractor",
+    "name": "cryde/json-text-extractor",
     "description": "Helper that will extract JSON from plain text",
     "type": "library",
     "license": "MIT",
