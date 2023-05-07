@@ -1,0 +1,48 @@
+name: "Static Analysis by PHPStan"
+
+on:
+    pull_request:
+    push:
+
+jobs:
+    static-analysis-psalm:
+        name: "Static Analysis by PHPStan"
+
+        runs-on: ${{ matrix.operating-system }}
+
+        strategy:
+            matrix:
+                dependencies:
+                    - "locked"
+                php-version:
+                    - "8.1"
+                    - "8.2"
+                operating-system:
+                    - "ubuntu-latest"
+
+        steps:
+            - name: "Checkout"
+              uses: "actions/checkout@v3"
+
+            - name: "Install PHP"
+              uses: "shivammathur/setup-php@v2"
+              with:
+                  coverage: "pcov"
+                  php-version: "${{ matrix.php-version }}"
+                  ini-values: memory_limit=-1
+                  tools: composer:v2, cs2pr
+
+            - name: "Cache dependencies"
+              uses: "actions/cache@v3"
+              with:
+                  path: |
+                      ~/.composer/cache
+                      vendor
+                  key: "php-${{ matrix.php-version }}-${{ matrix.dependencies }}"
+                  restore-keys: "php-${{ matrix.php-version }}-${{ matrix.dependencies }}"
+
+            - name: "Install dependencies"
+              run: "composer install --no-interaction --no-progress --no-suggest"
+
+            - name: "phpstan"
+              run: " vendor/bin/phpstan analyse -c phpstan.neon --error-format=github"
