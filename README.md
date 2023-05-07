@@ -72,6 +72,10 @@ array(2) {
 */
 ```
 
+## Use cases
+
+- extract JSON from strings returned by ChatGPT : sometimes (even though you explicit asked to not do that) it will add some explanations around the JSON returned
+- tell me if you have other use cases
 
 ## Feedback / Bugs
 
