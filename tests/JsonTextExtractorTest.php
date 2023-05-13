@@ -10,8 +10,8 @@ class JsonTextExtractorTest extends TestCase
     #[DataProvider('stringJsonTestProvider')]
     public function testGetJsonString(string $stringWithJson, array $result): void
     {
-        $textJsonExtractor = new JsonTextExtractor($stringWithJson);
-        $this->assertSame($result, $textJsonExtractor->getJsonStrings());
+        $textJsonExtractor = new JsonTextExtractor();
+        $this->assertSame($result, $textJsonExtractor->getJsonStrings($stringWithJson));
     }
 
     /**

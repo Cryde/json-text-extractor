@@ -44,9 +44,9 @@ Vestibulum egestas, diam suscipit mattis bibendum, nisi arcu ullamcorper justo.
 STR;
 
 
-$textJsonExtractor = new JsonTextExtractor($str);
+$textJsonExtractor = new JsonTextExtractor();
 
-var_dump($textJsonExtractor->getJsonStrings());
+var_dump($textJsonExtractor->getJsonStrings($str));
 /*
 array(2) {
   [0] =>

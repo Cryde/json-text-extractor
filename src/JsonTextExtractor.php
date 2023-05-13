@@ -3,16 +3,12 @@
 namespace Cryde\JsonTxtExtractor;
 class JsonTextExtractor
 {
-    public function __construct(private readonly string $text)
-    {
-    }
-
     /**
      * @return string[]
      */
-    public function getJsonStrings(): array
+    public function getJsonStrings(string $text): array
     {
-        preg_match_all('#\{(?:[^{}]|(?R))*\}#s', $this->text, $matches);
+        preg_match_all('#\{(?:[^{}]|(?R))*\}#s', $text, $matches);
         $finalValidJson = [];
         foreach ($matches[0] as $match) {
             if (json_validate($match)) {
