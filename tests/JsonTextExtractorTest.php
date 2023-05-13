@@ -6,12 +6,19 @@ use PHPUnit\Framework\TestCase;
 
 class JsonTextExtractorTest extends TestCase
 {
+    private JsonTextExtractor $jsonTextExtractor;
+
+    protected function setUp(): void
+    {
+        $this->jsonTextExtractor = new JsonTextExtractor();
+        parent::setUp();
+    }
+
     /** @param string[] $result */
     #[DataProvider('stringJsonTestProvider')]
     public function testGetJsonString(string $stringWithJson, array $result): void
     {
-        $textJsonExtractor = new JsonTextExtractor();
-        $this->assertSame($result, $textJsonExtractor->getJsonStrings($stringWithJson));
+        $this->assertSame($result, $this->jsonTextExtractor->getJsonStrings($stringWithJson));
     }
 
     /**
